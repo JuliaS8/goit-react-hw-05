@@ -13,7 +13,7 @@ function MoviesPage() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("movie" || "");
+  const query = searchParams.get("movie");
 
   useEffect(() => {
     const fetchMoviesPage = async () => {

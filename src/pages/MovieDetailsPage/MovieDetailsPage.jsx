@@ -1,12 +1,12 @@
-import css from "./MovieDetailsPage.module.css";
-import { fetchMovieDetails } from "../../Api";
-import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { NavLink, Outlet, useParams } from "react-router-dom";
-import Section from "../../components/Section/Section";
-import Loader from "../../components/Loader/Loader";
-import GoBackBtn from "../../components/GoBackBtn/GoBackBtn";
-import clsx from "clsx";
+import css from './MovieDetailsPage.module.css';
+import { fetchMovieDetails } from '../../Api';
+import { Suspense, useEffect, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { NavLink, Outlet, useParams } from 'react-router-dom';
+import Section from '../../components/Section/Section';
+import Loader from '../../components/Loader/Loader';
+import GoBackBtn from '../../components/GoBackBtn/GoBackBtn';
+import clsx from 'clsx';
 
 function MovieDetailsPage() {
   const { movieId } = useParams();
@@ -17,7 +17,7 @@ function MovieDetailsPage() {
     : null;
   const imageMoviePoster = movieDetails.poster_path
     ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
-    : "https://via.placeholder.com/200x300?text=No+Image+Available";
+    : 'https://via.placeholder.com/200x300?text=No+Image+Available';
   const voteAverage = movieDetails.vote_average
     ? Math.round(movieDetails.vote_average * 10)
     : null;
@@ -35,14 +35,14 @@ function MovieDetailsPage() {
         setMovieDetail(data);
       } catch (err) {
         console.log(err);
-        toast.error("Sorry! Please, try later.");
+        toast.error('Sorry! Please, try later.');
       } finally {
         setLoading(false);
       }
     };
     getMovieDetails();
   }, [movieId]);
-
+    
   return (
     <Section>
       {loading && <Loader />}
@@ -55,23 +55,24 @@ function MovieDetailsPage() {
         />
         <div className={css.movieDetails}>
           <h2 className={css.movieDetailsTitle}>
-            {movieDetails.original_title}{" "}
+            {movieDetails.original_title}{' '}
             {release_date && `(${release_date.getFullYear()})`}
           </h2>
           <p>
-            Use Score:{" "}
-            {voteAverage !== null ? `${voteAverage}%` : "Not Available"}
+            Use Score:{' '}
+            {voteAverage !== null ? `${voteAverage}%` : 'Not Available'}
           </p>
           <h3 className={css.movieDetailsOverviewTitle}>Overview:</h3>
           <p className={css.movieDetailsOverview}>{movieDetails.overview}</p>
           <h3 className={css.movieDetailsGenresTitle}>Genres:</h3>
           <ul className={css.movieDetailsGenres}>
             {movieDetails.genres &&
-              movieDetails.genres.map((genre) => {
+              movieDetails.genres.map(genre => {
                 return <li key={genre.id}>{genre.name}</li>;
               })}
           </ul>
         </div>
+      </div>
       <div className={css.movieDetailsInformation}>
         <h3 className={css.movieDetailsInformTitle}>Additional information</h3>
         <div className={css.movieDetailsLink}>
@@ -83,10 +84,9 @@ function MovieDetailsPage() {
           </NavLink>
         </div>
       </div>
-      <div>
+      <Suspense fallback={<div>Loading subpage...</div>}>
         <Outlet />
-              </div>
-              </div>
+      </Suspense>
       <Toaster position="top-right" reverseOrder={false} />
     </Section>
   );

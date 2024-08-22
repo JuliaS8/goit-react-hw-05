@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovieCredits } from "../../Api";
 import { TbPhotoCancel } from "react-icons/tb";
+import css from './MovieCast.module.css'
 
 function MovieCast() {
   const { movieId } = useParams();
