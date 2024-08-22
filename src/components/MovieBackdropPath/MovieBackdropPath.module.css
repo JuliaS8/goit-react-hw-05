@@ -1,0 +1,16 @@
+.movieImg {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.movieImg:hover {
+  transform: scale(1.05);
+}
+
+.movieName {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}

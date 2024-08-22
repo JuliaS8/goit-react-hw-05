@@ -1,9 +1,15 @@
-import React from 'react'
+import css from "./NotFoundPage.module.css";
+import { Link } from "react-router-dom";
+import Section from "../../components/Section/Section";
 
-const NotFoundPage = () => {
+function NotFoundPage() {
   return (
-    <div>NotFoundPage</div>
-  )
+    <Section>
+      <Link to="/" className={css.buttonNotPage}>
+        Back to Home Page
+      </Link>
+    </Section>
+  );
 }
 
-export default NotFoundPage
+export default NotFoundPage;

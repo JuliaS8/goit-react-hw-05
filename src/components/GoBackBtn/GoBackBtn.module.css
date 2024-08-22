@@ -1,0 +1,17 @@
+.buttonGoBack {
+  padding: 5px 15px;
+  width: 300px;
+  background-color: transparent;
+  color: #2c68ff;
+  font-size: 17px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &:hover {
+    color: #1d2563;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

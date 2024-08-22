@@ -1,0 +1,14 @@
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.movieListItem {
+  list-style: none;
+  transition: transform 0.3s ease;
+}
+
+.movieListItem:hover {
+  transform: scale(1.03);
+}
